@@ -1,1 +1,73 @@
-<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>BrainBuilder Game</title>\n    <style>\n        body { font-family: Arial, sans-serif; }\n        h1 { text-align: center; }\n        .game { margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }\n        .button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }\n        .button:hover { background-color: #218838; }\n    </style>\n</head>\n<body>\n    <h1>BrainBuilder Game</h1>\n    <div class=\"game\">\n        <h2>K-2 Level</h2>\n        <p>Welcome to the K-2 BrainBuilder game! Here you will find fun activities like pattern matching and memory games.</p>\n        <button class=\"button\">Start K-2 Activities</button>\n    </div>\n    <div class=\"game\">\n        <h2>Grades 3-5 Level</h2>\n        <p>Welcome to the Grades 3-5 BrainBuilder game! Here you'll solve sorting puzzles and odd-one-out challenges.</p>\n        <button class=\"button\">Start 3-5 Activities</button>\n    </div>\n</body>\n</html>\n
+<html>
+<head>
+    <title>BrainBuilder Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .game-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #startButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Welcome to BrainBuilder!</h1>
+        <p>Can you build the brain by answering these questions correctly?</p>
+        <button id="startButton">Start Game</button>
+        <div id="questions" style="display:none;">
+            <h2>Questions</h2>
+            <p id="questionText"></p>
+            <button id="answerButton">Answer</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            { question: "What is 2 + 2?", answer: "4" },
+            { question: "What is the capital of France?", answer: "Paris" },
+            { question: "What is the largest mammal?", answer: "Blue Whale" },
+            // Add more questions as needed
+        ];
+        let currentQuestion = 0;
+
+        document.getElementById('startButton').onclick = function() {
+            document.getElementById('startButton').style.display = 'none';
+            document.getElementById('questions').style.display = 'block';
+            loadQuestion();
+        };
+
+        function loadQuestion() {
+            document.getElementById('questionText').innerText = questions[currentQuestion].question;
+        }
+
+        document.getElementById('answerButton').onclick = function() {
+            const userAnswer = prompt(questions[currentQuestion].question);
+            if (userAnswer === questions[currentQuestion].answer) {
+                alert('Correct!');
+            } else {
+                alert('Wrong answer.');
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                alert('Game Over!');
+            }
+        };
+    </script>
+</body>
+</html>
